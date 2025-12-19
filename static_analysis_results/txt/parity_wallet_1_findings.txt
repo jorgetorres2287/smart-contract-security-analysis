@@ -1,0 +1,621 @@
+================================================================================
+SECURITY FINDINGS SUMMARY
+================================================================================
+
+Total Contracts Analyzed: 1
+Total Findings: 82
+
+
+================================================================================
+CONTRACT: parity_wallet_1
+Total Findings: 82
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: High (3 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: reentrancy-eth (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: High | Confidence: Medium
+      Description:
+        Reentrancy in WalletLibrary.confirm(bytes32) ():
+        External calls:
+        - ! m_txs[_h].to.call.value(m_txs[_h].value)(m_txs[_h].data) ()
+        State variables written after the call(s):
+        - delete m_txs[_h] ()
+        WalletLibrary.m_txs () can be used in cross function reentrancies:
+        - WalletLibrary.clearPending() ()
+        - WalletLibrary.confirm(bytes32) ()
+        - WalletLibrary.execute(address,uint256,bytes) ()
+
+
+  Check Type: suicidal (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: High | Confidence: High
+      Description:
+        WalletLibrary.kill(address) () allows anyone to destruct the contract
+
+
+  Check Type: uninitialized-state (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: High | Confidence: High
+      Description:
+        Wallet.m_owners () is never initialized. It is used in:
+        - Wallet.getOwner(uint256) ()
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Medium (3 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: unchecked-lowlevel (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Medium | Confidence: Medium
+      Description:
+        Wallet.fallback() () ignores return value by
+        _walletLibrary.delegatecall(msg.data) ()
+
+
+  Check Type: uninitialized-local (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Medium | Confidence: Medium
+      Description:
+        WalletLibrary.confirm(bytes32).created () is a local variable never
+        initialized
+
+
+  [2] Impact: Medium | Confidence: Medium
+      Description:
+        WalletLibrary.execute(address,uint256,bytes).created () is a local
+        variable never initialized
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Low (5 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: incorrect-modifier (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Low | Confidence: High
+      Description:
+        Modifier WalletLibrary.onlymanyowners(bytes32) () does not always
+        execute _; or revert
+
+
+  [2] Impact: Low | Confidence: High
+      Description:
+        Modifier WalletLibrary.onlyowner() () does not always execute _; or
+        revert
+
+
+  Check Type: reentrancy-events (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Low | Confidence: Medium
+      Description:
+        Reentrancy in WalletLibrary.execute(address,uint256,bytes) ():
+        External calls:
+        - ! _to.call.value(_value)(_data) ()
+        Event emitted after the call(s):
+        - SingleTransact(msg.sender,_value,_to,_data,created) ()
+
+
+  [2] Impact: Low | Confidence: Medium
+      Description:
+        Reentrancy in WalletLibrary.confirm(bytes32) ():
+        External calls:
+        - ! m_txs[_h].to.call.value(m_txs[_h].value)(m_txs[_h].data) ()
+        Event emitted after the call(s):
+        -
+        MultiTransact(msg.sender,_h,m_txs[_h].value,m_txs[_h].to,m_txs[_h].data,created)
+        ()
+
+
+  Check Type: timestamp (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Low | Confidence: Medium
+      Description:
+        WalletLibrary.underLimit(uint256) () uses timestamp for comparisons
+        Dangerous comparisons:
+        - today() > m_lastDay ()
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Informational (62 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: assembly (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        Wallet.Wallet(address[],uint256,uint256) () uses assembly
+        - INLINE ASM ()
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        WalletLibrary.create(uint256,bytes) () uses assembly
+        - INLINE ASM ()
+
+
+  Check Type: deprecated-standards (5 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        Deprecated standard detected onlymanyowners(sha3()(msg.data)) ():
+        - Usage of "sha3()" should be replaced with "keccak256()"
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        Deprecated standard detected o_hash = sha3()(msg.data,block.number)
+        ():
+        - Usage of "sha3()" should be replaced with "keccak256()"
+
+
+  [3] Impact: Informational | Confidence: High
+      Description:
+        Deprecated standard detected sig =
+        bytes4(sha3()(initWallet(address[],uint256,uint256))) ():
+        - Usage of "sha3()" should be replaced with "keccak256()"
+
+
+  [4] Impact: Informational | Confidence: High
+      Description:
+        Deprecated standard detected suicide(address)(_to) ():
+        - Usage of "suicide()" should be replaced with "selfdestruct()"
+
+
+  [5] Impact: Informational | Confidence: High
+      Description:
+        Deprecated standard detected THROW ():
+        - Usage of "throw" should be replaced with "revert()"
+
+
+  Check Type: low-level-calls (5 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        Low level call in WalletLibrary.confirm(bytes32) ():
+        - ! m_txs[_h].to.call.value(m_txs[_h].value)(m_txs[_h].data) ()
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        Low level call in WalletLibrary.execute(address,uint256,bytes) ():
+        - ! _to.call.value(_value)(_data) ()
+
+
+  [3] Impact: Informational | Confidence: High
+      Description:
+        Low level call in Wallet.isOwner(address) ():
+        - _walletLibrary.delegatecall(msg.data) ()
+
+
+  [4] Impact: Informational | Confidence: High
+      Description:
+        Low level call in Wallet.hasConfirmed(bytes32,address) ():
+        - _walletLibrary.delegatecall(msg.data) ()
+
+
+  [5] Impact: Informational | Confidence: High
+      Description:
+        Low level call in Wallet.fallback() ():
+        - _walletLibrary.delegatecall(msg.data) ()
+
+
+  Check Type: missing-inheritance (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        WalletLibrary () should inherit from WalletAbi ()
+
+
+  Check Type: naming-convention (41 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_txs () is not in mixedCase
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.execute(address,uint256,bytes)._data () is
+        not in mixedCase
+
+
+  [3] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.changeOwner(address,address)._to () is not in
+        mixedCase
+
+
+  [4] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.underLimit(uint256)._value () is not in
+        mixedCase
+
+
+  [5] Impact: Informational | Confidence: High
+      Description:
+        Parameter
+        WalletLibrary.initWallet(address[],uint256,uint256)._required () is
+        not in mixedCase
+
+
+  [6] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.removeOwner(address)._owner () is not in
+        mixedCase
+
+
+  [7] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.kill(address)._to () is not in mixedCase
+
+
+  [8] Impact: Informational | Confidence: High
+      Description:
+        Variable Wallet.m_dailyLimit () is not in mixedCase
+
+
+  [9] Impact: Informational | Confidence: High
+      Description:
+        Parameter
+        WalletLibrary.initWallet(address[],uint256,uint256)._daylimit () is
+        not in mixedCase
+
+
+  [10] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_spentToday () is not in mixedCase
+
+
+  [11] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.c_maxOwners () is not in mixedCase
+
+
+  [12] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_dailyLimit () is not in mixedCase
+
+
+  [13] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.isOwner(address)._addr () is not in mixedCase
+
+
+  [14] Impact: Informational | Confidence: High
+      Description:
+        Variable Wallet.m_lastDay () is not in mixedCase
+
+
+  [15] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_owners () is not in mixedCase
+
+
+  [16] Impact: Informational | Confidence: High
+      Description:
+        Variable Wallet.m_numOwners () is not in mixedCase
+
+
+  [17] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_lastDay () is not in mixedCase
+
+
+  [18] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_numOwners () is not in mixedCase
+
+
+  [19] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.hasConfirmed(bytes32,address)._owner () is
+        not in mixedCase
+
+
+  [20] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.revoke(bytes32)._operation () is not in
+        mixedCase
+
+
+  [21] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.confirm(bytes32)._h () is not in mixedCase
+
+
+  [22] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_required () is not in mixedCase
+
+
+  [23] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.confirmAndCheck(bytes32)._operation () is not
+        in mixedCase
+
+
+  [24] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.hasConfirmed(bytes32,address)._operation ()
+        is not in mixedCase
+
+
+  [25] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.initDaylimit(uint256)._limit () is not in
+        mixedCase
+
+
+  [26] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.execute(address,uint256,bytes)._to () is not
+        in mixedCase
+
+
+  [27] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.execute(address,uint256,bytes)._value () is
+        not in mixedCase
+
+
+  [28] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_ownerIndex () is not in mixedCase
+
+
+  [29] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.changeOwner(address,address)._from () is not
+        in mixedCase
+
+
+  [30] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.addOwner(address)._owner () is not in
+        mixedCase
+
+
+  [31] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.initMultiowned(address[],uint256)._required
+        () is not in mixedCase
+
+
+  [32] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.changeRequirement(uint256)._newRequired () is
+        not in mixedCase
+
+
+  [33] Impact: Informational | Confidence: High
+      Description:
+        Variable Wallet.m_spentToday () is not in mixedCase
+
+
+  [34] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.initWallet(address[],uint256,uint256)._owners
+        () is not in mixedCase
+
+
+  [35] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.initMultiowned(address[],uint256)._owners ()
+        is not in mixedCase
+
+
+  [36] Impact: Informational | Confidence: High
+      Description:
+        Variable Wallet.m_required () is not in mixedCase
+
+
+  [37] Impact: Informational | Confidence: High
+      Description:
+        Parameter WalletLibrary.setDailyLimit(uint256)._newLimit () is not in
+        mixedCase
+
+
+  [38] Impact: Informational | Confidence: High
+      Description:
+        Variable Wallet.m_owners () is not in mixedCase
+
+
+  [39] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_pendingIndex () is not in mixedCase
+
+
+  [40] Impact: Informational | Confidence: High
+      Description:
+        Modifier WalletLibrary.only_uninitialized() () is not in mixedCase
+
+
+  [41] Impact: Informational | Confidence: High
+      Description:
+        Variable WalletLibrary.m_pending () is not in mixedCase
+
+
+  Check Type: solc-version (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        solc-0.4.9 is an outdated solc version. Use a more recent version (at
+        least 0.8.0), if possible.
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        Version constraint ^0.4.9 contains known severe issues
+        (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - DirtyBytesArrayToStorage
+        - KeccakCaching
+        - EmptyByteArrayCopy
+        - DynamicArrayCleanup
+        - ImplicitConstructorCallvalueCheck
+        - TupleAssignmentMultiStackSlotComponents
+        - MemoryArrayCreationOverflow
+        - privateCanBeOverridden
+        - SignedArrayStorageCopy
+        - UninitializedFunctionPointerInConstructor_0.4.x
+        - IncorrectEventSignatureInLibraries_0.4.x
+        - ExpExponentCleanup
+        - NestedArrayFunctionCallDecoder
+        - ZeroFunctionSelector
+        - DelegateCallReturnValue
+        - ECRecoverMalformedInput
+        - SkipEmptyStringLiteral
+        - ConstantOptimizerSubtraction.
+        It is used by:
+        - ^0.4.9 ()
+
+
+  Check Type: unused-state (6 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        Wallet.m_dailyLimit () is never used in Wallet ()
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        Wallet.m_lastDay () is never used in Wallet ()
+
+
+  [3] Impact: Informational | Confidence: High
+      Description:
+        Wallet.m_spentToday () is never used in Wallet ()
+
+
+  [4] Impact: Informational | Confidence: High
+      Description:
+        WalletLibrary._walletLibrary () is never used in WalletLibrary ()
+
+
+  [5] Impact: Informational | Confidence: High
+      Description:
+        Wallet.m_numOwners () is never used in Wallet ()
+
+
+  [6] Impact: Informational | Confidence: High
+      Description:
+        Wallet.m_required () is never used in Wallet ()
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Optimization (9 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: constable-states (8 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Optimization | Confidence: High
+      Description:
+        Wallet.m_lastDay () should be constant
+
+
+  [2] Impact: Optimization | Confidence: High
+      Description:
+        Wallet.m_required () should be constant
+
+
+  [3] Impact: Optimization | Confidence: High
+      Description:
+        WalletLibrary._walletLibrary () should be constant
+
+
+  [4] Impact: Optimization | Confidence: High
+      Description:
+        Wallet.m_spentToday () should be constant
+
+
+  [5] Impact: Optimization | Confidence: High
+      Description:
+        Wallet.m_numOwners () should be constant
+
+
+  [6] Impact: Optimization | Confidence: High
+      Description:
+        Wallet.m_dailyLimit () should be constant
+
+
+  [7] Impact: Optimization | Confidence: High
+      Description:
+        Wallet._walletLibrary () should be constant
+
+
+  [8] Impact: Optimization | Confidence: High
+      Description:
+        WalletLibrary.c_maxOwners () should be constant
+
+
+  Check Type: external-function (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Optimization | Confidence: High
+      Description:
+        initWallet(address[],uint256,uint256) should be declared external:
+        - WalletLibrary.initWallet(address[],uint256,uint256) ()
+
+
+
+
+================================================================================
+SUMMARY BY SEVERITY
+================================================================================
+
+  High           :    3 findings
+  Medium         :    3 findings
+  Low            :    5 findings
+  Informational  :   62 findings
+  Optimization   :    9 findings
+
+================================================================================
+SUMMARY BY CHECK TYPE
+================================================================================
+
+  naming-convention             :   41 findings
+  constable-states              :    8 findings
+  unused-state                  :    6 findings
+  deprecated-standards          :    5 findings
+  low-level-calls               :    5 findings
+  uninitialized-local           :    2 findings
+  incorrect-modifier            :    2 findings
+  reentrancy-events             :    2 findings
+  assembly                      :    2 findings
+  solc-version                  :    2 findings
+  reentrancy-eth                :    1 findings
+  suicidal                      :    1 findings
+  uninitialized-state           :    1 findings
+  unchecked-lowlevel            :    1 findings
+  timestamp                     :    1 findings
+  missing-inheritance           :    1 findings
+  external-function             :    1 findings

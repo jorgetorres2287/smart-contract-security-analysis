@@ -1,0 +1,188 @@
+================================================================================
+SECURITY FINDINGS SUMMARY
+================================================================================
+
+Total Contracts Analyzed: 1
+Total Findings: 13
+
+
+================================================================================
+CONTRACT: anubis_ankh
+Total Findings: 13
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Medium (3 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: uninitialized-local (3 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Medium | Confidence: Medium
+      File: anubis_ankh.sol#L191
+      Description:
+        EnumerableSet.getValues(EnumerableSet.Bytes4Set).bytes4Array_
+        (anubis_ankh.sol#191) is a local variable never initialized
+
+
+  [2] Impact: Medium | Confidence: Medium
+      File: anubis_ankh.sol#L327
+      Description:
+        EnumerableSet.getValues(EnumerableSet.AddressSet).addressArray
+        (anubis_ankh.sol#327) is a local variable never initialized
+
+
+  [3] Impact: Medium | Confidence: Medium
+      File: anubis_ankh.sol#L255
+      Description:
+        EnumerableSet.getValues(EnumerableSet.Bytes32Set).bytes4Array_
+        (anubis_ankh.sol#255) is a local variable never initialized
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Low (3 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: events-access (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Low | Confidence: Medium
+      File: anubis_ankh.sol#L866-L870
+      Description:
+        VaultOwned.setVault(address) (anubis_ankh.sol#866-870) should emit an
+        event for:
+        - _vault = vault_ (anubis_ankh.sol#867)
+
+
+  Check Type: missing-zero-check (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Low | Confidence: Medium
+      File: anubis_ankh.sol#L866
+      Description:
+        VaultOwned.setVault(address).vault_ (anubis_ankh.sol#866) lacks a
+        zero-check on :
+        - _vault = vault_ (anubis_ankh.sol#867)
+
+
+  Check Type: timestamp (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Low | Confidence: Medium
+      File: anubis_ankh.sol#L794-L815
+      Description:
+        ERC20Permit.permit(address,address,uint256,uint256,uint8,bytes32,bytes32)
+        (anubis_ankh.sol#794-815) uses timestamp for comparisons
+        Dangerous comparisons:
+        - require(bool,string)(block.timestamp <= deadline,Permit: expired
+        deadline) (anubis_ankh.sol#803)
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Informational (5 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: assembly (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: anubis_ankh.sol#L777-L792
+      Description:
+        ERC20Permit.constructor() (anubis_ankh.sol#777-792) uses assembly
+        - INLINE ASM (anubis_ankh.sol#779-781)
+
+
+  Check Type: naming-convention (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: anubis_ankh.sol#L902-L911
+      Description:
+        Function AnubisERC20Token._burnFrom(address,uint256)
+        (anubis_ankh.sol#902-911) is not in mixedCase
+
+
+  [2] Impact: Informational | Confidence: High
+      File: anubis_ankh.sol#L775
+      Description:
+        Variable ERC20Permit.DOMAIN_SEPARATOR (anubis_ankh.sol#775) is not in
+        mixedCase
+
+
+  Check Type: solc-version (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: anubis_ankh.sol#L13
+      Description:
+        Version constraint 0.7.5 contains known severe issues
+        (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess
+        - AbiReencodingHeadOverflowWithStaticArrayCleanup
+        - DirtyBytesArrayToStorage
+        - DataLocationChangeInInternalOverride
+        - NestedCalldataArrayAbiReencodingSizeValidation
+        - SignedImmutables
+        - ABIDecodeTwoDimensionalArrayMemory
+        - KeccakCaching.
+        It is used by:
+        - 0.7.5 (anubis_ankh.sol#13)
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        solc-0.7.5 is an outdated solc version. Use a more recent version (at
+        least 0.8.0), if possible.
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Optimization (2 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: immutable-states (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Optimization | Confidence: High
+      File: anubis_ankh.sol#L775
+      Description:
+        ERC20Permit.DOMAIN_SEPARATOR (anubis_ankh.sol#775) should be
+        immutable
+
+
+  [2] Impact: Optimization | Confidence: High
+      File: anubis_ankh.sol#L634
+      Description:
+        ERC20._decimals (anubis_ankh.sol#634) should be immutable
+
+
+
+
+================================================================================
+SUMMARY BY SEVERITY
+================================================================================
+
+  Medium         :    3 findings
+  Low            :    3 findings
+  Informational  :    5 findings
+  Optimization   :    2 findings
+
+================================================================================
+SUMMARY BY CHECK TYPE
+================================================================================
+
+  uninitialized-local           :    3 findings
+  solc-version                  :    2 findings
+  naming-convention             :    2 findings
+  immutable-states              :    2 findings
+  events-access                 :    1 findings
+  missing-zero-check            :    1 findings
+  timestamp                     :    1 findings
+  assembly                      :    1 findings

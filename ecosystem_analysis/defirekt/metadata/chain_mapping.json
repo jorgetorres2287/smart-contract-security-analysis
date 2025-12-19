@@ -1,0 +1,127 @@
+{
+  "data": {
+    "chains": [
+      {
+        "id": 1,
+        "name": "ethereum"
+      },
+      {
+        "id": 2,
+        "name": "binance"
+      },
+      {
+        "id": 3,
+        "name": "polygon"
+      },
+      {
+        "id": 4,
+        "name": "fantom"
+      },
+      {
+        "id": 5,
+        "name": "arbitrum"
+      },
+      {
+        "id": 6,
+        "name": "avax"
+      },
+      {
+        "id": 7,
+        "name": "gnosis"
+      },
+      {
+        "id": 9,
+        "name": "moonriver"
+      },
+      {
+        "id": 10,
+        "name": "harmony"
+      },
+      {
+        "id": 11,
+        "name": "heco"
+      },
+      {
+        "id": 13,
+        "name": "okex"
+      },
+      {
+        "id": 14,
+        "name": "cronos"
+      },
+      {
+        "id": 17,
+        "name": "elastos"
+      },
+      {
+        "id": 19,
+        "name": "terra"
+      },
+      {
+        "id": 20,
+        "name": "klay"
+      },
+      {
+        "id": 22,
+        "name": "cardano"
+      },
+      {
+        "id": 24,
+        "name": "ronin"
+      },
+      {
+        "id": 32,
+        "name": "thorchain"
+      },
+      {
+        "id": 36,
+        "name": "akash"
+      },
+      {
+        "id": 37,
+        "name": "kujira"
+      },
+      {
+        "id": 40,
+        "name": "terra-2"
+      },
+      {
+        "id": 49,
+        "name": "base"
+      },
+      {
+        "id": 51,
+        "name": "linea"
+      },
+      {
+        "id": 44,
+        "name": "bitcoin"
+      },
+      {
+        "id": 45,
+        "name": "dogecoin"
+      },
+      {
+        "id": 46,
+        "name": "tezos"
+      },
+      {
+        "id": 47,
+        "name": "zksync"
+      },
+      {
+        "id": 25,
+        "name": "cosmos"
+      },
+      {
+        "id": 26,
+        "name": "kava"
+      },
+      {
+        "id": 27,
+        "name": "osmosis"
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,259 @@
+================================================================================
+SECURITY FINDINGS SUMMARY
+================================================================================
+
+Total Contracts Analyzed: 1
+Total Findings: 19
+
+
+================================================================================
+CONTRACT: private_bank
+Total Findings: 19
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: High (2 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: controlled-array-length (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: High | Confidence: Medium
+      File: private_bank.sol#L55-L80
+      Description:
+        Log
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#55-80)
+        contract sets array length with a user-controlled value:
+        - History.push(LastMsg)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#77)
+
+
+  Check Type: reentrancy-eth (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: High | Confidence: Medium
+      File: private_bank.sol#L38-L49
+      Description:
+        Reentrancy in Private_Bank.CashOut(uint256)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#38-49):
+        External calls:
+        - msg.sender.call.value(_am)()
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#43)
+        State variables written after the call(s):
+        - balances[msg.sender] -= _am
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#45)
+        Private_Bank.balances
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#16)
+        can be used in cross function reentrancies:
+        - Private_Bank.CashOut(uint256)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#38-49)
+        - Private_Bank.Deposit()
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#27-36)
+        - Private_Bank.balances
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#16)
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Informational (15 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: low-level-calls (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: private_bank.sol#L38-L49
+      Description:
+        Low level call in Private_Bank.CashOut(uint256)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#38-49):
+        - msg.sender.call.value(_am)()
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#43)
+
+
+  Check Type: naming-convention (12 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: private_bank.sol#L66
+      Description:
+        Variable Log.History
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#66)
+        is not in mixedCase
+
+
+  [2] Impact: Informational | Confidence: High
+      File: private_bank.sol#L68
+      Description:
+        Variable Log.LastMsg
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#68)
+        is not in mixedCase
+
+
+  [3] Impact: Informational | Confidence: High
+      File: private_bank.sol#L70
+      Description:
+        Parameter Log.AddMessage(address,uint256,string)._adr
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#70)
+        is not in mixedCase
+
+
+  [4] Impact: Informational | Confidence: High
+      File: private_bank.sol#L70-L78
+      Description:
+        Function Log.AddMessage(address,uint256,string)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#70-78)
+        is not in mixedCase
+
+
+  [5] Impact: Informational | Confidence: High
+      File: private_bank.sol#L14-L53
+      Description:
+        Contract Private_Bank
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#14-53)
+        is not in CapWords
+
+
+  [6] Impact: Informational | Confidence: High
+      File: private_bank.sol#L18
+      Description:
+        Variable Private_Bank.MinDeposit
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#18)
+        is not in mixedCase
+
+
+  [7] Impact: Informational | Confidence: High
+      File: private_bank.sol#L70
+      Description:
+        Parameter Log.AddMessage(address,uint256,string)._data
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#70)
+        is not in mixedCase
+
+
+  [8] Impact: Informational | Confidence: High
+      File: private_bank.sol#L27-L36
+      Description:
+        Function Private_Bank.Deposit()
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#27-36)
+        is not in mixedCase
+
+
+  [9] Impact: Informational | Confidence: High
+      File: private_bank.sol#L20
+      Description:
+        Variable Private_Bank.TransferLog
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#20)
+        is not in mixedCase
+
+
+  [10] Impact: Informational | Confidence: High
+      File: private_bank.sol#L38-L49
+      Description:
+        Function Private_Bank.CashOut(uint256)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#38-49)
+        is not in mixedCase
+
+
+  [11] Impact: Informational | Confidence: High
+      File: private_bank.sol#L70
+      Description:
+        Parameter Log.AddMessage(address,uint256,string)._val
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#70)
+        is not in mixedCase
+
+
+  [12] Impact: Informational | Confidence: High
+      File: private_bank.sol#L38
+      Description:
+        Parameter Private_Bank.CashOut(uint256)._am
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#38)
+        is not in mixedCase
+
+
+  Check Type: solc-version (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: private_bank.sol#L12
+      Description:
+        Version constraint ^0.4.19 contains known severe issues
+        (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - DirtyBytesArrayToStorage
+        - ABIDecodeTwoDimensionalArrayMemory
+        - KeccakCaching
+        - EmptyByteArrayCopy
+        - DynamicArrayCleanup
+        - ImplicitConstructorCallvalueCheck
+        - TupleAssignmentMultiStackSlotComponents
+        - MemoryArrayCreationOverflow
+        - privateCanBeOverridden
+        - SignedArrayStorageCopy
+        - ABIEncoderV2StorageArrayWithMultiSlotElement
+        - DynamicConstructorArgumentsClippedABIV2
+        - UninitializedFunctionPointerInConstructor_0.4.x
+        - IncorrectEventSignatureInLibraries_0.4.x
+        - ABIEncoderV2PackedStorage_0.4.x
+        - ExpExponentCleanup
+        - EventStructWrongData
+        - NestedArrayFunctionCallDecoder.
+        It is used by:
+        - ^0.4.19
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#12)
+
+
+  [2] Impact: Informational | Confidence: High
+      Description:
+        solc-0.4.19 is an outdated solc version. Use a more recent version
+        (at least 0.8.0), if possible.
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Optimization (2 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: constable-states (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Optimization | Confidence: High
+      File: private_bank.sol#L18
+      Description:
+        Private_Bank.MinDeposit
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#18)
+        should be constant
+
+
+  Check Type: external-function (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Optimization | Confidence: High
+      File: private_bank.sol#L70-L78
+      Description:
+        AddMessage(address,uint256,string) should be declared external:
+        - Log.AddMessage(address,uint256,string)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/honeypot/private_bank.sol#70-78)
+
+
+
+
+================================================================================
+SUMMARY BY SEVERITY
+================================================================================
+
+  High           :    2 findings
+  Informational  :   15 findings
+  Optimization   :    2 findings
+
+================================================================================
+SUMMARY BY CHECK TYPE
+================================================================================
+
+  naming-convention             :   12 findings
+  solc-version                  :    2 findings
+  controlled-array-length       :    1 findings
+  reentrancy-eth                :    1 findings
+  low-level-calls               :    1 findings
+  constable-states              :    1 findings
+  external-function             :    1 findings

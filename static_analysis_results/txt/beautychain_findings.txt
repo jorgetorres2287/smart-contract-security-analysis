@@ -1,0 +1,292 @@
+================================================================================
+SECURITY FINDINGS SUMMARY
+================================================================================
+
+Total Contracts Analyzed: 1
+Total Findings: 27
+
+
+================================================================================
+CONTRACT: beautychain
+Total Findings: 27
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Informational (22 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: naming-convention (19 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: beautychain.sol#L266
+      Description:
+        Parameter PausableToken.batchTransfer(address[],uint256)._receivers
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#266)
+        is not in mixedCase
+
+
+  [2] Impact: Informational | Confidence: High
+      File: beautychain.sol#L258
+      Description:
+        Parameter PausableToken.transferFrom(address,address,uint256)._from
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#258)
+        is not in mixedCase
+
+
+  [3] Impact: Informational | Confidence: High
+      File: beautychain.sol#L155
+      Description:
+        Parameter StandardToken.allowance(address,address)._spender
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#155)
+        is not in mixedCase
+
+
+  [4] Impact: Informational | Confidence: High
+      File: beautychain.sol#L143
+      Description:
+        Parameter StandardToken.approve(address,uint256)._value
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#143)
+        is not in mixedCase
+
+
+  [5] Impact: Informational | Confidence: High
+      File: beautychain.sol#L258
+      Description:
+        Parameter PausableToken.transferFrom(address,address,uint256)._to
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#258)
+        is not in mixedCase
+
+
+  [6] Impact: Informational | Confidence: High
+      File: beautychain.sol#L70
+      Description:
+        Parameter BasicToken.transfer(address,uint256)._value
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#70)
+        is not in mixedCase
+
+
+  [7] Impact: Informational | Confidence: High
+      File: beautychain.sol#L155
+      Description:
+        Parameter StandardToken.allowance(address,address)._owner
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#155)
+        is not in mixedCase
+
+
+  [8] Impact: Informational | Confidence: High
+      File: beautychain.sol#L266
+      Description:
+        Parameter PausableToken.batchTransfer(address[],uint256)._value
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#266)
+        is not in mixedCase
+
+
+  [9] Impact: Informational | Confidence: High
+      File: beautychain.sol#L121
+      Description:
+        Parameter StandardToken.transferFrom(address,address,uint256)._from
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#121)
+        is not in mixedCase
+
+
+  [10] Impact: Informational | Confidence: High
+      File: beautychain.sol#L262
+      Description:
+        Parameter PausableToken.approve(address,uint256)._spender
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#262)
+        is not in mixedCase
+
+
+  [11] Impact: Informational | Confidence: High
+      File: beautychain.sol#L121
+      Description:
+        Parameter StandardToken.transferFrom(address,address,uint256)._to
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#121)
+        is not in mixedCase
+
+
+  [12] Impact: Informational | Confidence: High
+      File: beautychain.sol#L143
+      Description:
+        Parameter StandardToken.approve(address,uint256)._spender
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#143)
+        is not in mixedCase
+
+
+  [13] Impact: Informational | Confidence: High
+      File: beautychain.sol#L70
+      Description:
+        Parameter BasicToken.transfer(address,uint256)._to
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#70)
+        is not in mixedCase
+
+
+  [14] Impact: Informational | Confidence: High
+      File: beautychain.sol#L86
+      Description:
+        Parameter BasicToken.balanceOf(address)._owner
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#86)
+        is not in mixedCase
+
+
+  [15] Impact: Informational | Confidence: High
+      File: beautychain.sol#L254
+      Description:
+        Parameter PausableToken.transfer(address,uint256)._value
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#254)
+        is not in mixedCase
+
+
+  [16] Impact: Informational | Confidence: High
+      File: beautychain.sol#L254
+      Description:
+        Parameter PausableToken.transfer(address,uint256)._to
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#254)
+        is not in mixedCase
+
+
+  [17] Impact: Informational | Confidence: High
+      File: beautychain.sol#L262
+      Description:
+        Parameter PausableToken.approve(address,uint256)._value
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#262)
+        is not in mixedCase
+
+
+  [18] Impact: Informational | Confidence: High
+      File: beautychain.sol#L258
+      Description:
+        Parameter PausableToken.transferFrom(address,address,uint256)._value
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#258)
+        is not in mixedCase
+
+
+  [19] Impact: Informational | Confidence: High
+      File: beautychain.sol#L121
+      Description:
+        Parameter StandardToken.transferFrom(address,address,uint256)._value
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#121)
+        is not in mixedCase
+
+
+  Check Type: solc-version (2 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      Description:
+        solc-0.4.24 is an outdated solc version. Use a more recent version
+        (at least 0.8.0), if possible.
+
+
+  [2] Impact: Informational | Confidence: High
+      File: beautychain.sol#L12
+      Description:
+        Version constraint ^0.4.16 contains known severe issues
+        (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - DirtyBytesArrayToStorage
+        - ABIDecodeTwoDimensionalArrayMemory
+        - KeccakCaching
+        - EmptyByteArrayCopy
+        - DynamicArrayCleanup
+        - ImplicitConstructorCallvalueCheck
+        - TupleAssignmentMultiStackSlotComponents
+        - MemoryArrayCreationOverflow
+        - privateCanBeOverridden
+        - SignedArrayStorageCopy
+        - ABIEncoderV2StorageArrayWithMultiSlotElement
+        - DynamicConstructorArgumentsClippedABIV2
+        - UninitializedFunctionPointerInConstructor_0.4.x
+        - IncorrectEventSignatureInLibraries_0.4.x
+        - ExpExponentCleanup
+        - NestedArrayFunctionCallDecoder
+        - ZeroFunctionSelector.
+        It is used by:
+        - ^0.4.16
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#12)
+
+
+  Check Type: too-many-digits (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: Medium
+      File: beautychain.sol#L301-L304
+      Description:
+        BecToken.BecToken()
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#301-304)
+        uses literals with too many digits:
+        - totalSupply = 7000000000 * (10 ** (uint256(decimals)))
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#302)
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Optimization (5 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: constable-states (4 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Optimization | Confidence: High
+      File: beautychain.sol#L296
+      Description:
+        BecToken.decimals
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#296)
+        should be constant
+
+
+  [2] Impact: Optimization | Confidence: High
+      File: beautychain.sol#L295
+      Description:
+        BecToken.version
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#295)
+        should be constant
+
+
+  [3] Impact: Optimization | Confidence: High
+      File: beautychain.sol#L293
+      Description:
+        BecToken.name
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#293)
+        should be constant
+
+
+  [4] Impact: Optimization | Confidence: High
+      File: beautychain.sol#L294
+      Description:
+        BecToken.symbol
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#294)
+        should be constant
+
+
+  Check Type: external-function (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Optimization | Confidence: High
+      File: beautychain.sol#L266-L278
+      Description:
+        batchTransfer(address[],uint256) should be declared external:
+        - PausableToken.batchTransfer(address[],uint256)
+        (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#266-278)
+
+
+
+
+================================================================================
+SUMMARY BY SEVERITY
+================================================================================
+
+  Informational  :   22 findings
+  Optimization   :    5 findings
+
+================================================================================
+SUMMARY BY CHECK TYPE
+================================================================================
+
+  naming-convention             :   19 findings
+  constable-states              :    4 findings
+  solc-version                  :    2 findings
+  too-many-digits               :    1 findings
+  external-function             :    1 findings

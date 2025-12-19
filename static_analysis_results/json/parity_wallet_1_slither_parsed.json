@@ -1,0 +1,614 @@
+{
+  "contract": "parity_wallet_1",
+  "tool": "slither",
+  "analysis": {
+    "success": true,
+    "total_findings": 82,
+    "findings_by_severity": {
+      "High": 3,
+      "Medium": 3,
+      "Low": 5,
+      "Informational": 62,
+      "Optimization": 9
+    },
+    "findings_by_check": {
+      "reentrancy-eth": 1,
+      "suicidal": 1,
+      "uninitialized-state": 1,
+      "unchecked-lowlevel": 1,
+      "uninitialized-local": 2,
+      "incorrect-modifier": 2,
+      "reentrancy-events": 2,
+      "timestamp": 1,
+      "assembly": 2,
+      "deprecated-standards": 5,
+      "solc-version": 2,
+      "low-level-calls": 5,
+      "missing-inheritance": 1,
+      "naming-convention": 41,
+      "unused-state": 6,
+      "constable-states": 8,
+      "external-function": 1
+    },
+    "findings": [
+      {
+        "check": "reentrancy-eth",
+        "impact": "High",
+        "confidence": "Medium",
+        "description": "Reentrancy in WalletLibrary.confirm(bytes32) ():\n\tExternal calls:\n\t- ! m_txs[_h].to.call.value(m_txs[_h].value)(m_txs[_h].data) ()\n\tState variables written after the call(s):\n\t- delete m_txs[_h] ()\n\tWalletLibrary.m_txs () can be used in cross function reentrancies:\n\t- WalletLibrary.clearPending() ()\n\t- WalletLibrary.confirm(bytes32) ()\n\t- WalletLibrary.execute(address,uint256,bytes) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "suicidal",
+        "impact": "High",
+        "confidence": "High",
+        "description": "WalletLibrary.kill(address) () allows anyone to destruct the contract",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "uninitialized-state",
+        "impact": "High",
+        "confidence": "High",
+        "description": "Wallet.m_owners () is never initialized. It is used in:\n\t- Wallet.getOwner(uint256) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "unchecked-lowlevel",
+        "impact": "Medium",
+        "confidence": "Medium",
+        "description": "Wallet.fallback() () ignores return value by _walletLibrary.delegatecall(msg.data) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "uninitialized-local",
+        "impact": "Medium",
+        "confidence": "Medium",
+        "description": "WalletLibrary.confirm(bytes32).created () is a local variable never initialized",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "uninitialized-local",
+        "impact": "Medium",
+        "confidence": "Medium",
+        "description": "WalletLibrary.execute(address,uint256,bytes).created () is a local variable never initialized",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "incorrect-modifier",
+        "impact": "Low",
+        "confidence": "High",
+        "description": "Modifier WalletLibrary.onlymanyowners(bytes32) () does not always execute _; or revert",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "incorrect-modifier",
+        "impact": "Low",
+        "confidence": "High",
+        "description": "Modifier WalletLibrary.onlyowner() () does not always execute _; or revert",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "reentrancy-events",
+        "impact": "Low",
+        "confidence": "Medium",
+        "description": "Reentrancy in WalletLibrary.execute(address,uint256,bytes) ():\n\tExternal calls:\n\t- ! _to.call.value(_value)(_data) ()\n\tEvent emitted after the call(s):\n\t- SingleTransact(msg.sender,_value,_to,_data,created) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "reentrancy-events",
+        "impact": "Low",
+        "confidence": "Medium",
+        "description": "Reentrancy in WalletLibrary.confirm(bytes32) ():\n\tExternal calls:\n\t- ! m_txs[_h].to.call.value(m_txs[_h].value)(m_txs[_h].data) ()\n\tEvent emitted after the call(s):\n\t- MultiTransact(msg.sender,_h,m_txs[_h].value,m_txs[_h].to,m_txs[_h].data,created) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "timestamp",
+        "impact": "Low",
+        "confidence": "Medium",
+        "description": "WalletLibrary.underLimit(uint256) () uses timestamp for comparisons\n\tDangerous comparisons:\n\t- today() > m_lastDay ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "assembly",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Wallet.Wallet(address[],uint256,uint256) () uses assembly\n\t- INLINE ASM ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "assembly",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "WalletLibrary.create(uint256,bytes) () uses assembly\n\t- INLINE ASM ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "deprecated-standards",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Deprecated standard detected onlymanyowners(sha3()(msg.data)) ():\n\t- Usage of \"sha3()\" should be replaced with \"keccak256()\"",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "deprecated-standards",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Deprecated standard detected o_hash = sha3()(msg.data,block.number) ():\n\t- Usage of \"sha3()\" should be replaced with \"keccak256()\"",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "deprecated-standards",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Deprecated standard detected sig = bytes4(sha3()(initWallet(address[],uint256,uint256))) ():\n\t- Usage of \"sha3()\" should be replaced with \"keccak256()\"",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "deprecated-standards",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Deprecated standard detected suicide(address)(_to) ():\n\t- Usage of \"suicide()\" should be replaced with \"selfdestruct()\"",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "deprecated-standards",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Deprecated standard detected THROW ():\n\t- Usage of \"throw\" should be replaced with \"revert()\"",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "solc-version",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "solc-0.4.9 is an outdated solc version. Use a more recent version (at least 0.8.0), if possible.",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "solc-version",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Version constraint ^0.4.9 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- DirtyBytesArrayToStorage\n\t- KeccakCaching\n\t- EmptyByteArrayCopy\n\t- DynamicArrayCleanup\n\t- ImplicitConstructorCallvalueCheck\n\t- TupleAssignmentMultiStackSlotComponents\n\t- MemoryArrayCreationOverflow\n\t- privateCanBeOverridden\n\t- SignedArrayStorageCopy\n\t- UninitializedFunctionPointerInConstructor_0.4.x\n\t- IncorrectEventSignatureInLibraries_0.4.x\n\t- ExpExponentCleanup\n\t- NestedArrayFunctionCallDecoder\n\t- ZeroFunctionSelector\n\t- DelegateCallReturnValue\n\t- ECRecoverMalformedInput\n\t- SkipEmptyStringLiteral\n\t- ConstantOptimizerSubtraction.\nIt is used by:\n\t- ^0.4.9 ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in WalletLibrary.confirm(bytes32) ():\n\t- ! m_txs[_h].to.call.value(m_txs[_h].value)(m_txs[_h].data) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in WalletLibrary.execute(address,uint256,bytes) ():\n\t- ! _to.call.value(_value)(_data) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in Wallet.isOwner(address) ():\n\t- _walletLibrary.delegatecall(msg.data) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in Wallet.hasConfirmed(bytes32,address) ():\n\t- _walletLibrary.delegatecall(msg.data) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in Wallet.fallback() ():\n\t- _walletLibrary.delegatecall(msg.data) ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "missing-inheritance",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "WalletLibrary () should inherit from WalletAbi ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_txs () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.execute(address,uint256,bytes)._data () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.changeOwner(address,address)._to () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.underLimit(uint256)._value () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.initWallet(address[],uint256,uint256)._required () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.removeOwner(address)._owner () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.kill(address)._to () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable Wallet.m_dailyLimit () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.initWallet(address[],uint256,uint256)._daylimit () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_spentToday () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.c_maxOwners () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_dailyLimit () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.isOwner(address)._addr () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable Wallet.m_lastDay () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_owners () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable Wallet.m_numOwners () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_lastDay () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_numOwners () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.hasConfirmed(bytes32,address)._owner () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.revoke(bytes32)._operation () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.confirm(bytes32)._h () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_required () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.confirmAndCheck(bytes32)._operation () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.hasConfirmed(bytes32,address)._operation () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.initDaylimit(uint256)._limit () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.execute(address,uint256,bytes)._to () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.execute(address,uint256,bytes)._value () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_ownerIndex () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.changeOwner(address,address)._from () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.addOwner(address)._owner () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.initMultiowned(address[],uint256)._required () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.changeRequirement(uint256)._newRequired () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable Wallet.m_spentToday () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.initWallet(address[],uint256,uint256)._owners () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.initMultiowned(address[],uint256)._owners () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable Wallet.m_required () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter WalletLibrary.setDailyLimit(uint256)._newLimit () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable Wallet.m_owners () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_pendingIndex () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Modifier WalletLibrary.only_uninitialized() () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Variable WalletLibrary.m_pending () is not in mixedCase",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "unused-state",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Wallet.m_dailyLimit () is never used in Wallet ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "unused-state",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Wallet.m_lastDay () is never used in Wallet ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "unused-state",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Wallet.m_spentToday () is never used in Wallet ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "unused-state",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "WalletLibrary._walletLibrary () is never used in WalletLibrary ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "unused-state",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Wallet.m_numOwners () is never used in Wallet ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "unused-state",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Wallet.m_required () is never used in Wallet ()",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "Wallet.m_lastDay () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "Wallet.m_required () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "WalletLibrary._walletLibrary () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "Wallet.m_spentToday () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "Wallet.m_numOwners () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "Wallet.m_dailyLimit () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "Wallet._walletLibrary () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "WalletLibrary.c_maxOwners () should be constant",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "external-function",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "initWallet(address[],uint256,uint256) should be declared external:\n\t- WalletLibrary.initWallet(address[],uint256,uint256) ()",
+        "first_markdown_element": ""
+      }
+    ],
+    "metadata": {
+      "total_contracts": 0,
+      "error": null
+    }
+  }
+}

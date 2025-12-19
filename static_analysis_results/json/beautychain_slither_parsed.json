@@ -1,0 +1,310 @@
+{
+  "contract": "beautychain",
+  "tool": "slither",
+  "analysis": {
+    "success": true,
+    "total_findings": 27,
+    "findings_by_severity": {
+      "High": 0,
+      "Medium": 0,
+      "Low": 0,
+      "Informational": 22,
+      "Optimization": 5
+    },
+    "findings_by_check": {
+      "solc-version": 2,
+      "naming-convention": 19,
+      "too-many-digits": 1,
+      "constable-states": 4,
+      "external-function": 1
+    },
+    "findings": [
+      {
+        "check": "solc-version",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "solc-0.4.24 is an outdated solc version. Use a more recent version (at least 0.8.0), if possible.",
+        "first_markdown_element": ""
+      },
+      {
+        "check": "solc-version",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Version constraint ^0.4.16 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- DirtyBytesArrayToStorage\n\t- ABIDecodeTwoDimensionalArrayMemory\n\t- KeccakCaching\n\t- EmptyByteArrayCopy\n\t- DynamicArrayCleanup\n\t- ImplicitConstructorCallvalueCheck\n\t- TupleAssignmentMultiStackSlotComponents\n\t- MemoryArrayCreationOverflow\n\t- privateCanBeOverridden\n\t- SignedArrayStorageCopy\n\t- ABIEncoderV2StorageArrayWithMultiSlotElement\n\t- DynamicConstructorArgumentsClippedABIV2\n\t- UninitializedFunctionPointerInConstructor_0.4.x\n\t- IncorrectEventSignatureInLibraries_0.4.x\n\t- ExpExponentCleanup\n\t- NestedArrayFunctionCallDecoder\n\t- ZeroFunctionSelector.\nIt is used by:\n\t- ^0.4.16 (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#12)",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L12",
+        "lines": [
+          12
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.batchTransfer(address[],uint256)._receivers (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#266) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L266",
+        "lines": [
+          266
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.transferFrom(address,address,uint256)._from (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#258) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L258",
+        "lines": [
+          258
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter StandardToken.allowance(address,address)._spender (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#155) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L155",
+        "lines": [
+          155
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter StandardToken.approve(address,uint256)._value (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#143) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L143",
+        "lines": [
+          143
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.transferFrom(address,address,uint256)._to (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#258) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L258",
+        "lines": [
+          258
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter BasicToken.transfer(address,uint256)._value (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#70) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L70",
+        "lines": [
+          70
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter StandardToken.allowance(address,address)._owner (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#155) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L155",
+        "lines": [
+          155
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.batchTransfer(address[],uint256)._value (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#266) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L266",
+        "lines": [
+          266
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter StandardToken.transferFrom(address,address,uint256)._from (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#121) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L121",
+        "lines": [
+          121
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.approve(address,uint256)._spender (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#262) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L262",
+        "lines": [
+          262
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter StandardToken.transferFrom(address,address,uint256)._to (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#121) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L121",
+        "lines": [
+          121
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter StandardToken.approve(address,uint256)._spender (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#143) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L143",
+        "lines": [
+          143
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter BasicToken.transfer(address,uint256)._to (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#70) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L70",
+        "lines": [
+          70
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter BasicToken.balanceOf(address)._owner (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#86) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L86",
+        "lines": [
+          86
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.transfer(address,uint256)._value (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#254) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L254",
+        "lines": [
+          254
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.transfer(address,uint256)._to (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#254) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L254",
+        "lines": [
+          254
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.approve(address,uint256)._value (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#262) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L262",
+        "lines": [
+          262
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter PausableToken.transferFrom(address,address,uint256)._value (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#258) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L258",
+        "lines": [
+          258
+        ]
+      },
+      {
+        "check": "naming-convention",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Parameter StandardToken.transferFrom(address,address,uint256)._value (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#121) is not in mixedCase",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L121",
+        "lines": [
+          121
+        ]
+      },
+      {
+        "check": "too-many-digits",
+        "impact": "Informational",
+        "confidence": "Medium",
+        "description": "BecToken.BecToken() (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#301-304) uses literals with too many digits:\n\t- totalSupply = 7000000000 * (10 ** (uint256(decimals))) (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#302)",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L301-L304",
+        "lines": [
+          301,
+          302,
+          303,
+          304
+        ]
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "BecToken.decimals (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#296) should be constant",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L296",
+        "lines": [
+          296
+        ]
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "BecToken.version (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#295) should be constant",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L295",
+        "lines": [
+          295
+        ]
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "BecToken.name (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#293) should be constant",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L293",
+        "lines": [
+          293
+        ]
+      },
+      {
+        "check": "constable-states",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "BecToken.symbol (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#294) should be constant",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L294",
+        "lines": [
+          294
+        ]
+      },
+      {
+        "check": "external-function",
+        "impact": "Optimization",
+        "confidence": "High",
+        "description": "batchTransfer(address[],uint256) should be declared external:\n\t- PausableToken.batchTransfer(address[],uint256) (scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#266-278)",
+        "first_markdown_element": "scripts/dataset/solidity/exploits/exploits/ethereum/arithmetic/beautychain.sol#L266-L278",
+        "lines": [
+          266,
+          267,
+          268,
+          269,
+          270,
+          271,
+          272,
+          273,
+          274,
+          275,
+          276,
+          277,
+          278
+        ]
+      }
+    ],
+    "metadata": {
+      "total_contracts": 0,
+      "error": null
+    }
+  }
+}

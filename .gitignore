@@ -1,0 +1,48 @@
+smartbugs/
+venv/
+__pycache__/
+.cursor/
+tmp/
+.claude/
+
+# Exclude specific notebooks (exploratory, 01, 02, 03) but keep consolidated_analysis
+ecosystem_analysis/exploratory_analysis.ipynb
+ecosystem_analysis/01_parse_slither_findings.ipynb
+ecosystem_analysis/02_vulnerability_landscape.ipynb
+ecosystem_analysis/03_tool_reality_gap.ipynb
+
+# exclude random
+test_docker_setup.py
+scripts/prepare_dataset/fetch_contracts/metadata
+
+# Exclude all markdown files except README.md
+*.md
+!README.md
+ecosystem_analysis/README.md
+
+# Environment variables - NEVER commit these!
+.env
+.env.local
+*.env
+!.env.example
+
+# Random
+*.DS_Store
+
+# Checkpoint files for resume capability
+*.checkpoint.pkl
+
+# Analyzer logs - generated during runs
+analyzer/logs/*.log
+
+# Temporary output files
+stderr.txt
+stdout.json
+
+# Virtual environments
+analyzer-venv/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/

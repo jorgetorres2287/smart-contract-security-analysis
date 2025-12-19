@@ -1,0 +1,16 @@
+Check Type,Count,Percentage
+naming-convention,86,28.86
+assembly,74,24.83
+divide-before-multiply,30,10.07
+constable-states,13,4.36
+solc-version,11,3.69
+low-level-calls,10,3.36
+too-many-digits,10,3.36
+uninitialized-local,8,2.68
+unused-return,7,2.35
+unused-state,6,2.01
+deprecated-standards,5,1.68
+dead-code,5,1.68
+incorrect-modifier,3,1.01
+external-function,3,1.01
+missing-zero-check,3,1.01

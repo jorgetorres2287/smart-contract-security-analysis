@@ -1,0 +1,188 @@
+{
+  "contract": "sentiment_pool_proxy",
+  "tool": "slither",
+  "analysis": {
+    "success": true,
+    "total_findings": 10,
+    "findings_by_severity": {
+      "High": 0,
+      "Medium": 1,
+      "Low": 1,
+      "Informational": 8,
+      "Optimization": 0
+    },
+    "findings_by_check": {
+      "unused-return": 1,
+      "shadowing-local": 1,
+      "assembly": 3,
+      "solc-version": 1,
+      "low-level-calls": 4
+    },
+    "findings": [
+      {
+        "check": "unused-return",
+        "impact": "Medium",
+        "confidence": "Medium",
+        "description": "Helpers.withdrawEth(address,address,uint256) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#44-47) ignores return value by (success,None) = IAccount(account).exec(to,amt,new bytes(0)) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#45)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#L44-L47",
+        "lines": [
+          44,
+          45,
+          46,
+          47
+        ]
+      },
+      {
+        "check": "shadowing-local",
+        "impact": "Low",
+        "confidence": "High",
+        "description": "IAccount.init(address).accountManager (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#12) shadows:\n\t- IAccount.accountManager() (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#17) (function)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#L12",
+        "lines": [
+          12
+        ]
+      },
+      {
+        "check": "assembly",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "StorageSlot.getAddressAt(bytes32) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#5-9) uses assembly\n\t- INLINE ASM (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#6-8)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#L5-L9",
+        "lines": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "check": "assembly",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "BaseProxy._delegate(address) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/BaseProxy.sol#35-53) uses assembly\n\t- INLINE ASM (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/BaseProxy.sol#36-52)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/BaseProxy.sol#L35-L53",
+        "lines": [
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53
+        ]
+      },
+      {
+        "check": "assembly",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "StorageSlot.setAddressAt(bytes32,address) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#11-15) uses assembly\n\t- INLINE ASM (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#12-14)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#L11-L15",
+        "lines": [
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "check": "solc-version",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Version constraint ^0.8.17 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)\n\t- VerbatimInvalidDeduplication\n\t- FullInlinerNonExpressionSplitArgumentEvaluationOrder\n\t- MissingSideEffectsOnSelectorAccess.\nIt is used by:\n\t- ^0.8.17 (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#2)\n\t- ^0.8.17 (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/tokens/IERC20.sol#2)\n\t- ^0.8.17 (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/BaseProxy.sol#2)\n\t- ^0.8.17 (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/Proxy.sol#2)\n\t- ^0.8.17 (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Errors.sol#2)\n\t- ^0.8.17 (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#2)\n\t- ^0.8.17 (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#2)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#L2",
+        "lines": [
+          2
+        ]
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in Helpers.functionDelegateCall(address,bytes) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#66-73):\n\t- (success,None) = target.delegatecall(data) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#71)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#L66-L73",
+        "lines": [
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73
+        ]
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in Helpers.safeTransfer(address,address,uint256) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#23-33):\n\t- (success,data) = address(token).call(abi.encodeWithSelector(IERC20.transfer.selector,to,amt)) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#29-31)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#L23-L33",
+        "lines": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33
+        ]
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in Helpers.safeTransferFrom(address,address,address,uint256) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#10-21):\n\t- (success,data) = address(token).call(abi.encodeWithSelector(IERC20.transferFrom.selector,from,to,amt)) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#17-19)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#L10-L21",
+        "lines": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ]
+      },
+      {
+        "check": "low-level-calls",
+        "impact": "Informational",
+        "confidence": "High",
+        "description": "Low level call in Helpers.safeTransferEth(address,uint256) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#35-38):\n\t- (success,None) = to.call{value: amt}(new bytes(0)) (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#36)",
+        "first_markdown_element": "../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#L35-L38",
+        "lines": [
+          35,
+          36,
+          37,
+          38
+        ]
+      }
+    ],
+    "metadata": {
+      "total_contracts": 0,
+      "error": null
+    }
+  }
+}

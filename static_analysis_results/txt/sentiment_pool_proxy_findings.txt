@@ -1,0 +1,179 @@
+================================================================================
+SECURITY FINDINGS SUMMARY
+================================================================================
+
+Total Contracts Analyzed: 1
+Total Findings: 10
+
+
+================================================================================
+CONTRACT: sentiment_pool_proxy
+Total Findings: 10
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Medium (1 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: unused-return (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Medium | Confidence: Medium
+      File: Helpers.sol#L44-L47
+      Description:
+        Helpers.withdrawEth(address,address,uint256)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#44-47)
+        ignores return value by (success,None) =
+        IAccount(account).exec(to,amt,new bytes(0))
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#45)
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Low (1 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: shadowing-local (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Low | Confidence: High
+      File: IAccount.sol#L12
+      Description:
+        IAccount.init(address).accountManager
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#12)
+        shadows:
+        - IAccount.accountManager()
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#17)
+        (function)
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+SEVERITY: Informational (8 findings)
+────────────────────────────────────────────────────────────────────────────────
+
+  Check Type: assembly (3 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: Storage.sol#L5-L9
+      Description:
+        StorageSlot.getAddressAt(bytes32)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#5-9)
+        uses assembly
+        - INLINE ASM
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#6-8)
+
+
+  [2] Impact: Informational | Confidence: High
+      File: BaseProxy.sol#L35-L53
+      Description:
+        BaseProxy._delegate(address)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/BaseProxy.sol#35-53)
+        uses assembly
+        - INLINE ASM
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/BaseProxy.sol#36-52)
+
+
+  [3] Impact: Informational | Confidence: High
+      File: Storage.sol#L11-L15
+      Description:
+        StorageSlot.setAddressAt(bytes32,address)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#11-15)
+        uses assembly
+        - INLINE ASM
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#12-14)
+
+
+  Check Type: low-level-calls (4 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: Helpers.sol#L66-L73
+      Description:
+        Low level call in Helpers.functionDelegateCall(address,bytes)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#66-73):
+        - (success,None) = target.delegatecall(data)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#71)
+
+
+  [2] Impact: Informational | Confidence: High
+      File: Helpers.sol#L23-L33
+      Description:
+        Low level call in Helpers.safeTransfer(address,address,uint256)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#23-33):
+        - (success,data) =
+        address(token).call(abi.encodeWithSelector(IERC20.transfer.selector,to,amt))
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#29-31)
+
+
+  [3] Impact: Informational | Confidence: High
+      File: Helpers.sol#L10-L21
+      Description:
+        Low level call in
+        Helpers.safeTransferFrom(address,address,address,uint256)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#10-21):
+        - (success,data) =
+        address(token).call(abi.encodeWithSelector(IERC20.transferFrom.selector,from,to,amt))
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#17-19)
+
+
+  [4] Impact: Informational | Confidence: High
+      File: Helpers.sol#L35-L38
+      Description:
+        Low level call in Helpers.safeTransferEth(address,uint256)
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#35-38):
+        - (success,None) = to.call{value: amt}(new bytes(0))
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#36)
+
+
+  Check Type: solc-version (1 occurrence(s))
+  ────────────────────────────────────────────────────────────────────────────
+
+  [1] Impact: Informational | Confidence: High
+      File: IAccount.sol#L2
+      Description:
+        Version constraint ^0.8.17 contains known severe issues
+        (https://solidity.readthedocs.io/en/latest/bugs.html)
+        - VerbatimInvalidDeduplication
+        - FullInlinerNonExpressionSplitArgumentEvaluationOrder
+        - MissingSideEffectsOnSelectorAccess.
+        It is used by:
+        - ^0.8.17
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/core/IAccount.sol#2)
+        - ^0.8.17
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/interface/tokens/IERC20.sol#2)
+        - ^0.8.17
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/BaseProxy.sol#2)
+        - ^0.8.17
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/proxy/Proxy.sol#2)
+        - ^0.8.17
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Errors.sol#2)
+        - ^0.8.17
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Helpers.sol#2)
+        - ^0.8.17
+        (../../../../var/folders/fb/c57hq4k96pj2qr5crjjnk4q00000gn/T/slither-json-u8mk90_0/src/utils/Storage.sol#2)
+
+
+
+
+================================================================================
+SUMMARY BY SEVERITY
+================================================================================
+
+  Medium         :    1 findings
+  Low            :    1 findings
+  Informational  :    8 findings
+
+================================================================================
+SUMMARY BY CHECK TYPE
+================================================================================
+
+  low-level-calls               :    4 findings
+  assembly                      :    3 findings
+  unused-return                 :    1 findings
+  shadowing-local               :    1 findings
+  solc-version                  :    1 findings
