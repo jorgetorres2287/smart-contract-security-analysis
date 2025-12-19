@@ -43,9 +43,9 @@ python scripts/export_defi_ecosystem.py
 python scripts/install_solc_versions.py
 ```
 
-**Run analysis notebook:**
+**Analysis notebook:**
 ```bash
-jupyter notebook ecosystem_analysis/consolidated_analysis.ipynb
+final_analysis.ipynb
 ```
 
 ## Output
